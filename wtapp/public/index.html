@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="index.css">
   <title>Interactive Political Map</title>
   <style>
+
     body {
       margin: 0;
       font-family: Arial, sans-serif;
@@ -18,34 +19,34 @@
       flex-direction: column;
       height: 212.345679012345679vh; 
       transition: transform 0.5s ease; 
-  }
+    }
 
-  .component {
+    .component {
       flex: 1; 
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 2em;
-  }
+    }
 
-  .component:nth-child(odd) {
+    .component:nth-child(odd) {
       background-color:  #ADD8E6;
       padding-bottom: 0px; 
       margin-bottom: 0px;
       margin-top: 0px;
       line-height: 75%;
       min-height: 100vh;
-  }
+    }
 
-  .component:nth-child(even) {
+    .component:nth-child(even) {
       background-color:  #ADD8E6;
       padding-bottom: 0px; 
       margin-bottom: 0px;
       margin-top: 0px;
       line-height: 75%;
       height: 87.6543209877vh;
-  }
-    
+    }
+      
     header {
       text-align: center;
       background-color: #333;
@@ -56,44 +57,61 @@
       padding: 0;
       box-sizing: border-box;
     }
+
+    #interactive-map {
+      width: 100%; 
+      height: 100%; 
+      object-fit: contain; 
+    }
   </style>
 </head>
 
 <body>
   <header>
-      <h1>Header Content</h1>
-    </header>
+    <h1>Header Content</h1>
+  </header>
   <div class="component">
-      <object data="Map.svg" type="image/svg+xml" id="interactive-map"></object>
+    <object data="Map.svg" type="image/svg+xml" id="interactive-map"></object>
   </div>
   <div class="component"></div>
   <script>
+
     let scrollPosition = 0;
 
-function scrollToComponent(componentIndex) {
-  const component = document.querySelectorAll('.component')[componentIndex];
-  const position = component.offsetTop;
-  scrollPosition = position;
-  document.body.style.transform = `translateY(-${position}px)`;
-}
+    function scrollToComponent(componentIndex) {
+      const component = document.querySelectorAll('.component')[componentIndex];
+      const position = component.offsetTop;
+      scrollPosition = position;
+      document.body.style.transform = `translateY(-${position}px)`;
+    }
 
-// Handle mouse wheel event
-document.addEventListener('wheel', (event) => {
-  event.preventDefault();
-  const delta = Math.sign(event.deltaY);
-  scrollPosition += delta * window.innerHeight;
-  if (scrollPosition < 0) {
-    scrollPosition = 0;
-  } else if (scrollPosition > document.body.offsetHeight - window.innerHeight) {
-    scrollPosition = document.body.offsetHeight - window.innerHeight;
-  }
-  document.body.style.transform = `translateY(-${scrollPosition}px)`;
-});
 
-// Scroll to Component 2 initially
-window.onload = () => {
-  scrollToComponent(0);
-};
+    document.addEventListener('wheel', (event) => {
+      event.preventDefault();
+      const delta = Math.sign(event.deltaY);
+      scrollPosition += delta * window.innerHeight;
+      if (scrollPosition < 0) {
+        scrollPosition = 0;
+      } else if (scrollPosition > document.body.offsetHeight - window.innerHeight) {
+        scrollPosition = document.body.offsetHeight - window.innerHeight;
+      }
+      document.body.style.transform = `translateY(-${scrollPosition}px)`;
+    });
+
+    const mapObject = document.getElementById('interactive-map');
+    mapObject.addEventListener('wheel', (event) => {
+      event.stopPropagation();
+    });
+
+    window.onload = () => {
+      scrollToComponent(0);
+    };
+
+    mapObject.addEventListener('mouseover', () => {
+      document.body.style.overflow = 'auto';
+    });
+
   </script>
 </body>
+
 </html>
