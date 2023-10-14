@@ -59,8 +59,6 @@
     }
 
     #interactive-map {
-      width: 100%; 
-      height: 100%; 
       object-fit: contain; 
     }
   </style>
@@ -97,18 +95,22 @@
       }
       document.body.style.transform = `translateY(-${scrollPosition}px)`;
     });
-
     const mapObject = document.getElementById('interactive-map');
-    mapObject.addEventListener('wheel', (event) => {
-      event.stopPropagation();
-    });
 
+    mapObject.addEventListener('wheel', (event) => {
+        const delta = Math.sign(event.deltaY);
+        if ((delta < 0 && scrollPosition > 0) || (delta > 0 && scrollPosition < document.body.offsetHeight - window.innerHeight)) {
+            scrollPosition += delta * window.innerHeight;
+        }
+        document.body.style.transform = `translateY(-${scrollPosition}px)`;
+        event.preventDefault();
+    });
     window.onload = () => {
       scrollToComponent(0);
     };
 
     mapObject.addEventListener('mouseover', () => {
-      document.body.style.overflow = 'auto';
+      document.body.style.overflow = 'hidden';
     });
 
   </script>
