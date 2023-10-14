@@ -59,6 +59,8 @@
     }
 
     #interactive-map {
+      width: 100%; 
+      height: 100%; 
       object-fit: contain; 
     }
   </style>
@@ -73,47 +75,42 @@
   </div>
   <div class="component"></div>
   <script>
-
     let scrollPosition = 0;
+    const components = document.querySelectorAll('.component');
 
     function scrollToComponent(componentIndex) {
-      const component = document.querySelectorAll('.component')[componentIndex];
-      const position = component.offsetTop;
-      scrollPosition = position;
-      document.body.style.transform = `translateY(-${position}px)`;
+        const position = components[componentIndex].offsetTop;
+        scrollPosition = position;
+        window.scrollTo(0, scrollPosition);
     }
 
-
     document.addEventListener('wheel', (event) => {
-      event.preventDefault();
-      const delta = Math.sign(event.deltaY);
-      scrollPosition += delta * window.innerHeight;
-      if (scrollPosition < 0) {
-        scrollPosition = 0;
-      } else if (scrollPosition > document.body.offsetHeight - window.innerHeight) {
-        scrollPosition = document.body.offsetHeight - window.innerHeight;
-      }
-      document.body.style.transform = `translateY(-${scrollPosition}px)`;
-    });
-    const mapObject = document.getElementById('interactive-map');
-
-    mapObject.addEventListener('wheel', (event) => {
-        const delta = Math.sign(event.deltaY);
-        if ((delta < 0 && scrollPosition > 0) || (delta > 0 && scrollPosition < document.body.offsetHeight - window.innerHeight)) {
-            scrollPosition += delta * window.innerHeight;
-        }
-        document.body.style.transform = `translateY(-${scrollPosition}px)`;
         event.preventDefault();
+        const delta = Math.sign(event.deltaY);
+        scrollPosition += delta * window.innerHeight * 0.5;
+        if (scrollPosition < 0) {
+            scrollPosition = 0;
+        } else if (scrollPosition > document.body.offsetHeight - window.innerHeight) {
+            scrollPosition = document.body.offsetHeight - window.innerHeight;
+        }
+        window.scrollTo(0, scrollPosition);
     });
+
+    const mapObject = document.getElementById('interactive-map');
+    mapObject.addEventListener('wheel', (event) => {
+        event.stopPropagation();
+    });
+
     window.onload = () => {
-      scrollToComponent(0);
+        scrollToComponent(0);
     };
 
     mapObject.addEventListener('mouseover', () => {
-      document.body.style.overflow = 'hidden';
+        document.body.style.overflow = 'auto';
     });
 
-  </script>
+</script>
+
 </body>
 
 </html>
