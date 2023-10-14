@@ -17,7 +17,7 @@
       display: flex;
       flex-direction: column;
       height: 212.345679012345679vh; 
-      transition: transform 0.5s ease; 
+      transition: transform 2.5s ease; 
       
     }
 
@@ -93,7 +93,7 @@
 
     document.addEventListener('wheel', (event) => {
       event.preventDefault();
-      const delta = Math.sign(event.deltaY);
+      const delta = Math.sign(event.deltaY)*3000;
       scrollPosition += delta * window.innerHeight * 0.5;
       if (scrollPosition < 0) {
         scrollPosition = 0;
