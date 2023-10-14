@@ -10,6 +10,12 @@ body {
   
 }
 
+interactive-map{
+  pointer-events: none;
+  object-fit: contain;
+}
+
+
 header {
   width: 100%;
   height: 65px;
@@ -30,3 +36,6 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+

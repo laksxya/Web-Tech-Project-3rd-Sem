@@ -16,13 +16,12 @@
       overflow: hidden;
       display: flex;
       flex-direction: column;
-      height: 200vh; /* Make the body twice the height of the viewport */
+      height: 212.345679012345679vh; /* Make the body twice the height of the viewport */
       transition: transform 0.5s ease; /* Add smooth transition for scrolling */
   }
 
   .component {
-      flex: 1;
-      min-height: 100vh; /* Each component takes half the height of the viewport */
+      flex: 1; 
       display: flex;
       align-items: center;
       justify-content: center;
@@ -30,11 +29,21 @@
   }
 
   .component:nth-child(odd) {
-      background-color: #f0f0f0;
+      background-color:  #ADD8E6;
+      padding-bottom: 0px; 
+      margin-bottom: 0px;
+      margin-top: 0px;
+      line-height: 75%;
+      min-height: 100vh;
   }
 
   .component:nth-child(even) {
-      background-color: #ddd;
+      background-color:  #ADD8E6;
+      padding-bottom: 0px; 
+      margin-bottom: 0px;
+      margin-top: 0px;
+      line-height: 75%;
+      height: 87.6543209877vh;
   }
     
     header {
@@ -57,7 +66,7 @@
   <div class="component">
       <object data="Map.svg" type="image/svg+xml" id="interactive-map"></object>
   </div>
-  <div class="component">Component 2</div>
+  <div class="component"></div>
   <script>
     let scrollPosition = 0;
 
