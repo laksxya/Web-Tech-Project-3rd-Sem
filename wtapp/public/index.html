@@ -80,11 +80,32 @@
       cursor: pointer;
       padding: 15px;
       border-radius: 4px;
-      transition: 1s;
+      transition: 0.5s;
+}
+
+  #scrollToBottomButton{
+      position: fixed;
+      bottom: 10px;
+      right: 20px;
+      z-index: 99;
+      font-size: 18px;
+      border: none;
+      outline: none;
+      background-color: grey;
+      color: white;
+      cursor: pointer;
+      padding: 15px;
+      border-radius: 4px;
+      transition: 0.5s;
 }
 
 #myBtn:hover {
   background-color: #555;
+  filter: drop-shadow(0 3px 3px #000);
+}
+#scrollToBottomButton:hover {
+  background-color: #555;
+  filter: drop-shadow(0 3px 3px #000);
 }
   </style>
 </head>
@@ -93,11 +114,12 @@
   <header>
     <h1>Header Content</h1>
   </header>
-  <div class="component">
+  <div id="content" class="component">
     <object data="Map.svg" type="image/svg+xml" id="interactive-map"></object>
   </div>
   <div class="component"></div>
   <button onclick="topFunction()" id="myBtn" title="Go to top">Back to Top</button>
+  <button id="scrollToBottomButton">Get to Bottom</button>
   <script>
     let scrollPosition = 0;
     const components = document.querySelectorAll('.component');
@@ -152,7 +174,36 @@ function topFunction() {
   document.body.scrollTop = 0;
   document.documentElement.scrollTop = 0;
 }
-  </script>
+
+// function scrollWin() {
+//   window.scrollTo(0, 800);
+// } 
+document.addEventListener('DOMContentLoaded', function () {
+            const scrollToBottomButton = document.getElementById('scrollToBottomButton');
+            const content = document.getElementById('content');
+    
+            // Function to scroll to the bottom
+            function scrollToBottom() {
+                window.scrollTo({
+                    top: content.scrollHeight,
+                    behavior: 'smooth' // Add smooth scrolling animation
+                });
+            }
+    
+            // Show the button when not at the bottom
+            content.addEventListener('scroll', function () {
+                if (content.scrollTop + content.clientHeight < content.scrollHeight) {
+                    scrollToBottomButton.style.display = 'block';
+                } else {
+                    scrollToBottomButton.style.display = 'none';
+                }
+            });
+    
+            // Scroll to the bottom when the button is clicked
+            scrollToBottomButton.addEventListener('click', scrollToBottom);
+        });
+
+</script>
 </body>
 
 </html>
