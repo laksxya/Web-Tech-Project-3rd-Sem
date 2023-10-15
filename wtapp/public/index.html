@@ -179,15 +179,13 @@ document.addEventListener('DOMContentLoaded', function () {
             const scrollToBottomButton = document.getElementById('scrollToBottomButton');
             const content = document.getElementById('content');
     
-            // Function to scroll to the bottom
             function scrollToBottom() {
                 window.scrollTo({
                     top: content.scrollHeight,
-                    behavior: 'smooth' // Add smooth scrolling animation
+                    behavior: 'smooth'
                 });
             }
     
-            // Show the button when not at the bottom
             content.addEventListener('scroll', function () {
                 if (content.scrollTop + content.clientHeight < content.scrollHeight) {
                     scrollToBottomButton.style.display = 'block';
@@ -196,7 +194,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             });
     
-            // Scroll to the bottom when the button is clicked
             scrollToBottomButton.addEventListener('click', scrollToBottom);
         });
 
