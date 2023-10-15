@@ -67,19 +67,20 @@
       scrollbar-width: none; 
     }
     #myBtn {
-  display: none;
-  position: fixed;
-  bottom: 20px;
-  right: 680px;
-  z-index: 99;
-  font-size: 18px;
-  border: none;
-  outline: none;
-  background-color: grey;
-  color: white;
-  cursor: pointer;
-  padding: 15px;
-  border-radius: 4px;
+      display: none;
+      position: fixed;
+      bottom: 10px;
+      right: 680px;
+      z-index: 99;
+      font-size: 18px;
+      border: none;
+      outline: none;
+      background-color: grey;
+      color: white;
+      cursor: pointer;
+      padding: 15px;
+      border-radius: 4px;
+      transition: 1s;
 }
 
 #myBtn:hover {
@@ -109,8 +110,8 @@
 
     document.addEventListener('wheel', (event) => {
       event.preventDefault();
-      const delta = Math.sign(event.deltaY)*3000;
-      scrollPosition += delta * window.innerHeight * 0.5;
+      const delta = Math.sign(event.deltaY)*2000;
+      scrollPosition += delta * window.innerHeight * 0.80;
       if (scrollPosition < 0) {
         scrollPosition = 0;
       } else if (scrollPosition > document.body.offsetHeight - window.innerHeight) {
@@ -135,10 +136,10 @@
     document.addEventListener('DOMContentLoaded', function() {
       document.body.style.overflow = 'hidden';
     });
+
+
 let mybutton = document.getElementById("myBtn");
-
 window.onscroll = function() {scrollFunction()};
-
 function scrollFunction() {
   if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
     mybutton.style.display = "block";
