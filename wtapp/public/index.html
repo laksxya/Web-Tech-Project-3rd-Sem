@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <head>
-  <!-- vndsivns -->
   <meta charset="utf-8" />
   <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -84,7 +83,7 @@
     <object data="Map.svg" type="image/svg+xml" id="interactive-map"></object>
   </div>
   <div class="component"></div>
-  <button onclick="topFunction()" id="myBtn" class="pos up-arrow" title="Go to top"></button>
+  <button id="myBtn" class="pos up-arrow"></button>
   <button id="scrollToBottomButton" class="pos down-arrow"></button>
   <script>
     let scrollPosition = 0;
@@ -125,7 +124,7 @@
       document.body.style.overflow = 'hidden';
     });
 
-
+  
 let mybutton = document.getElementById("myBtn");
 window.onscroll = function() {scrollFunction()};
 function scrollFunction() {
@@ -136,13 +135,9 @@ function scrollFunction() {
   }
 }
 
-function topFunction() {
-  document.body.scrollTop = 0;
-  document.documentElement.scrollTop = 0;
-}
- 
 document.addEventListener('DOMContentLoaded', function () {
             const scrollToBottomButton = document.getElementById('scrollToBottomButton');
+            const scrollToTopButton = document.getElementById('myBtn');
             const content = document.getElementById('content');
     
             function scrollToBottom() {
@@ -151,6 +146,13 @@ document.addEventListener('DOMContentLoaded', function () {
                     behavior: 'smooth'
                 });
             }
+
+            function scrollToTop() {
+              window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+              });
+              }
     
             content.addEventListener('scroll', function () {
                 if (content.scrollTop + content.clientHeight < content.scrollHeight) {
@@ -161,6 +163,7 @@ document.addEventListener('DOMContentLoaded', function () {
             });
     
             scrollToBottomButton.addEventListener('click', scrollToBottom);
+            scrollToTopButton.addEventListener('click', scrollToTop);
         });
 
 </script>
