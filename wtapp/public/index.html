@@ -65,48 +65,15 @@
       -ms-overflow-style: none; 
       scrollbar-width: none; 
     }
-    #myBtn {
+     #myBtn {
       display: none;
       position: fixed;
       bottom: 10px;
-      right: 680px;
+      right: 10px;
       z-index: 99;
-      font-size: 18px;
-      border: none;
-      outline: none;
-      background-color: grey;
-      color: white;
-      cursor: pointer;
-      padding: 15px;
-      border-radius: 4px;
-      transition: 0.5s;
 }
 
-  #scrollToBottomButton{
-      position: fixed;
-      bottom: 10px;
-      right: 20px;
-      z-index: 99;
-      font-size: 18px;
-      border: none;
-      outline: none;
-      background-color: grey;
-      color: white;
-      cursor: pointer;
-      padding: 15px;
-      border-radius: 4px;
-      transition: 0.5s;
-}
-
-#myBtn:hover {
-  background-color: #555;
-  filter: drop-shadow(0 3px 3px #000);
-}
-#scrollToBottomButton:hover {
-  background-color: #555;
-  filter: drop-shadow(0 3px 3px #000);
-}
-  </style>
+</style>
 </head>
 
 <body>
@@ -117,8 +84,8 @@
     <object data="Map.svg" type="image/svg+xml" id="interactive-map"></object>
   </div>
   <div class="component"></div>
-  <button onclick="topFunction()" id="myBtn" title="Go to top">Back to Top</button>
-  <button id="scrollToBottomButton">Get to Bottom</button>
+  <button onclick="topFunction()" id="myBtn" class="pos up-arrow" title="Go to top"></button>
+  <button id="scrollToBottomButton" class="pos down-arrow"></button>
   <script>
     let scrollPosition = 0;
     const components = document.querySelectorAll('.component');
