@@ -96,35 +96,6 @@
       window.scrollTo(0, scrollPosition);
     }
 
-    document.addEventListener('wheel', (event) => {
-      event.preventDefault();
-      const delta = Math.sign(event.deltaY)*2000;
-      scrollPosition += delta * window.innerHeight * 0.80;
-      if (scrollPosition < 0) {
-        scrollPosition = 0;
-      } else if (scrollPosition > document.body.offsetHeight - window.innerHeight) {
-        scrollPosition = document.body.offsetHeight - window.innerHeight;
-      }
-      window.scrollTo(0, scrollPosition);
-    });
-
-    const mapObject = document.getElementById('interactive-map');
-    mapObject.addEventListener('wheel', (event) => {
-      event.stopPropagation();
-    });
-
-    window.onload = () => {
-      scrollToComponent(0);
-    };
-
-    mapObject.addEventListener('mouseover', () => {
-      document.body.style.overflow = 'auto';
-    });
-
-    document.addEventListener('DOMContentLoaded', function() {
-      document.body.style.overflow = 'hidden';
-    });
-
   
 let mybutton = document.getElementById("myBtn");
 window.onscroll = function() {scrollFunction()};
