@@ -18,6 +18,10 @@ body {
 .frontpage-header{
   padding: 0%;
 }
+svg {
+  width: 100%;
+  height: 50%;
+}
 .component {
   flex: 1;
   display: flex;
